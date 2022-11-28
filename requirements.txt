@@ -1,3 +1,4 @@
+# python 3.7
 haversine==2.7.0
 Keras==2.0.0
 matplotlib==3.4.0
