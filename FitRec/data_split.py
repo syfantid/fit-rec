@@ -180,5 +180,5 @@ for u in user2workout_core:
 
 print("train/valid/test = {}/{}/{}".format(len(train), len(valid), len(test)))
 
-with open('endomondoHR_proper_temporal_dataset.pkl', 'wb') as f:
+with open('data/endomondoHR_proper_temporal_dataset.pkl', 'wb') as f:
     pickle.dump((train, valid, test, contextMap2), f)

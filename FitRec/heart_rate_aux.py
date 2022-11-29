@@ -135,7 +135,7 @@ class keras_endoLSTM(object):
         user_reg = args.user_reg
         sport_reg = args.sport_reg
         gender_reg = args.gender_reg
-        output_reg = args.output_reg
+        output_reg = args.out_reg
         print("user/sport/output regularizer = {}/{}/{}".format(user_reg, sport_reg, output_reg))
 
         inputs = Input(shape=(self.num_steps, self.input_dim), name='input')

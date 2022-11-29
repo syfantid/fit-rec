@@ -56,7 +56,7 @@ class dataInterpreter(object):
         print("target attributes: ", self.targetAtts)
 
         self.trainValidTestSplit = trainValidTestSplit
-        self.trainValidTestFN = trainValidTestFN
+        self.trainValidTestFN = os.path.join("data", trainValidTestFN)
         self.zMultiple = zMultiple
 
     def preprocess_data(self):
@@ -70,7 +70,7 @@ class dataInterpreter(object):
         if os.path.exists(self.processed_path):
             # preprocessed data already exist
             print("{} exists".format(self.processed_path))
-            self.original_data = np.load(self.processed_path)[0]
+            self.original_data = np.load(self.processed_path, allow_pickle=True)[0]
             self.map_workout_id()
         else:
             # not preprocessed yet, load raw data and preprocess
