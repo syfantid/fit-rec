@@ -147,7 +147,8 @@ class keras_endoLSTM(object):
                                        embeddings_initializer=initializers.random_normal(stddev=0.01),
                                        embeddings_regularizer=l2(user_reg))
             user_embedding = User_Embedding(user_inputs)
-            user_embedding = Lambda(lambda y: K.squeeze(y, 2))(user_embedding)
+            # Why was squeeze necessary here? What could replace it?
+            user_embedding = Lambda(lambda y: K.sum(y, 2))(user_embedding)
             self.layer1_dim += self.user_dim
 
         if self.includeSport:
@@ -156,7 +157,7 @@ class keras_endoLSTM(object):
                                         embeddings_initializer=initializers.random_normal(stddev=0.01),
                                         embeddings_regularizer=l2(sport_reg))
             sport_embedding = Sport_Embedding(sport_inputs)
-            sport_embedding = Lambda(lambda y: K.squeeze(y, 2))(sport_embedding)
+            sport_embedding = Lambda(lambda y: K.sum(y, 2))(sport_embedding)
             self.layer1_dim += self.sport_dim
 
         if self.includeGender:
@@ -165,7 +166,7 @@ class keras_endoLSTM(object):
                                          embeddings_initializer=initializers.random_normal(stddev=0.01),
                                          embeddings_regularizer=l2(gender_reg))
             gender_embedding = Gender_Embedding(gender_inputs)
-            gender_embedding = Lambda(lambda y: K.squeeze(y, 2))(gender_embedding)
+            gender_embedding = Lambda(lambda y: K.sum(y, 2))(gender_embedding)
             self.layer1_dim += self.gender_dim
 
         if self.includeTemporal:
